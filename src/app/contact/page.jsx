@@ -1,20 +1,8 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import info from "@/JSON/Infojson";
-import Contactform from "@/components/Form/Contactform";
+import Queryform from "@/components/Form/Queryform";
 const page = () => {
   return (
     <motion.section
@@ -28,7 +16,7 @@ const page = () => {
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row gap-[30px]">
           <div className="xl:h-[54%] order-2 xl:order-none">
-            <Contactform />
+            <Queryform />
           </div>
           <div className="flex flex-1 items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0 ">
             <ul className="flex flex-col gap-10">

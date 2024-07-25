@@ -1,35 +1,28 @@
-const inputJson = [
+const contactFormjson = [
   {
-    name: "fullName",
+    name: "querySubject",
+    label: "Write your query subject",
     type: "text",
-    placeholder: "Full Name",
+    placeholder: "querySubject",
   },
   {
-    name: "userName",
-    type: "text",
-    placeholder: "User Name",
+    name: "queryDescription",
+    label: "Write your query description",
+    type: "textarea",
+    placeholder: "queryDescription",
   },
   {
-    name: "phoneNumber",
-    type: "text",
-    placeholder: "Phone Number",
+    name: "projectType",
+    label: "Select Your Project Type",
+    type: "select",
+    placeholder: " projectType",
   },
   {
-    name: "email",
-    type: "email",
-    placeholder: "E-mail",
-  },
-
-  {
-    name: "password",
-    type: "password",
-    placeholder: "Password",
-  },
-  {
-    name: "DateOfBirth",
-    type: "date",
-    placeholder: "DateOfBirth",
+    name: "techStack",
+    label: "Select Your Tech Stack",
+    type: "select",
+    placeholder: "techStack",
   },
 ];
 
-export default inputJson;
+export default contactFormjson;

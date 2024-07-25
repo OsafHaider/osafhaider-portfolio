@@ -9,7 +9,7 @@ const page = () => {
   return (
     <section className="h-full">
       <div className="mx-auto container">
-        <div className="flex flex-col xl:flex-row justify-between items-center xl:pt-8 xl:pb-24">
+        <div className="flex flex-col xl:flex-row justify-between items-center xl:pt-3 xl:pb-7">
           {/* Text */}
           <div className="text-center xl:text-left order-2 xl:order-none">
             <span className="text-xl">Software Developer</span>

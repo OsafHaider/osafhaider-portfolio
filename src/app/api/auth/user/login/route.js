@@ -28,10 +28,10 @@ export const POST = async (req) => {
     const data = {
       _id: foundByemail._id,
       email: foundByemail.email,
+      role: foundByemail.role,
     };
     // Generate The Token
     const token = await tokenGenerator(data);
-    console.log(token,"token");
     // Handle Expiration Time Of Token
     // Calculate the expiration time for 5 days
     const expirationTime = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000);
