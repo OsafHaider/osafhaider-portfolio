@@ -1,9 +1,11 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { UserContext } from "@/context/User";
 
 const Photo = () => {
+  const { user } = useContext(UserContext);
   // Return the Photo component
   return (
     <div className="w-full h-full relative">
@@ -36,7 +38,7 @@ const Photo = () => {
           {/* Image */}
           <Image
             className="object-contain w-full h-full"
-            src={"/assets/images/photo.png"}
+            src={user && user?.image}
             priority
             quality={100}
             fill

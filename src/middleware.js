@@ -22,18 +22,9 @@ export async function middleware(req) {
   // Get the current request path
   const pathName = req.nextUrl.pathname;
 
-  // If the request is for static assets in the public folder, allow access
-  if (
-    pathName.startsWith("/_next/static") ||
-    pathName.startsWith("/_next/image") ||
-    pathName.startsWith("/favicon.ico")
-  ) {
-    return NextResponse.next();
-  }
-
   // Handle unauthenticated access
   if (!token || !isVerified) {
-    if (publicRoutes.includes(pathName) || pathName.startsWith("/public/")) {
+    if (publicRoutes.includes(pathName) || pathName.startsWith("/assets/")) {
       // Allow access to public routes and static assets
       return NextResponse.next();
     }
