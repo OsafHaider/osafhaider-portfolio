@@ -59,6 +59,6 @@ export async function middleware(req) {
 export const config = {
   matcher: [
     // Match all routes except the specified ones
-    "/((?!api/auth|/api/user/signup|_next/static|_next/image|favicon.ico|/login|/signup|/public/).*)",
+    "/((?!api/auth|/api/user/signup|_next/static|_next/image|favicon.ico|/|/login|/signup|/public/).*)",
   ],
 };
