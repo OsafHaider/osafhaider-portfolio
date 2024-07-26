@@ -5,12 +5,12 @@ import { cookies } from "next/headers";
 export async function middleware(req) {
   // Get the access token from the cookies
   const token = cookies().get("AccessToken")?.value;
+
   // Verify the token
-  const isVerified = await tokenVerification(token);
-  // Get the role from the verified token
+  const isVerified = token ? await tokenVerification(token) : null;
   const role = isVerified?.role;
 
-  // Array of public routes that can be accessed without authentication
+  // Define public routes and static asset paths
   const publicRoutes = [
     "/login",
     "/signup",
@@ -19,39 +19,46 @@ export async function middleware(req) {
     "/api/user/signup",
   ];
 
-  // Get the path name from the request
+  // Get the current request path
   const pathName = req.nextUrl.pathname;
 
-  // If the user is not authenticated or the token is invalid
+  // If the request is for static assets in the public folder, allow access
+  if (
+    pathName.startsWith("/_next/static") ||
+    pathName.startsWith("/_next/image") ||
+    pathName.startsWith("/favicon.ico")
+  ) {
+    return NextResponse.next();
+  }
+
+  // Handle unauthenticated access
   if (!token || !isVerified) {
-    // If the path is a public route, allow access
-    if (publicRoutes.includes(pathName)) {
+    if (publicRoutes.includes(pathName) || pathName.startsWith("/public/")) {
+      // Allow access to public routes and static assets
       return NextResponse.next();
     }
-    // Redirect to login if the route is protected and no valid token is found
+    // Redirect to login for protected routes
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  // If the user is verified and trying to access login or signup, redirect to home
-  if (
-    token &&
-    isVerified &&
-    (pathName === "/login" || pathName === "/signup")
-  ) {
+  // Handle authenticated users
+  if (pathName === "/login" || pathName === "/signup") {
+    // Redirect authenticated users away from login/signup pages
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  // If the user is verified but not an admin and trying to access an admin route, redirect to home
-  if (token && isVerified && role !== "admin" && pathName === "/admin") {
+  if (role !== "admin" && pathName === "/admin") {
+    // Redirect non-admin users trying to access admin routes
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  // Allow access to other routes for verified users
+  // Allow access to all other routes
   return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    "/((?!api/auth|/api/user/signup|_next/static|_next/image|favicon.ico|/login|/signup|/).*)",
+    // Match all routes except the specified ones
+    "/((?!api/auth|/api/user/signup|_next/static|_next/image|favicon.ico|/login|/signup|/public/).*)",
   ],
 };

@@ -27,7 +27,7 @@ const page = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="uppercase flex items-center gap-2"
+                className="uppercase flex items-center gap-2 text-white"
               >
                 <span>Download CV</span>
                 <Download size={18} className="text-xl" />
