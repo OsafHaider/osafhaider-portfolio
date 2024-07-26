@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
-// Components
 import Nav from "./Nav";
 import Mobilenav from "./Mobilenav";
 import { UserContext } from "@/context/User";
@@ -27,18 +26,15 @@ const Header = () => {
           </Link>
 
           {/* Profile picture */}
-          <div
-            className={`hidden ${
-              user &&
-              "w-10 h-10 rounded-full bg-accent flex items-center justify-center"
-            }`}
-          >
-            {user && user.fullName && (
-              <p className="font-medium text-2xl">
-                {user.fullName.charAt(0).toUpperCase()}
-              </p>
-            )}
-          </div>
+          {user && (
+            <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center">
+              {user.fullName && (
+                <p className="font-medium text-2xl">
+                  {user.fullName.charAt(0).toUpperCase()}
+                </p>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Mobile Nav */}
