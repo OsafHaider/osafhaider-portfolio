@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { tokenVerification } from "./helper/jwt";
+import { tokenVerification } from "./helper/jwt"; // Ensure this function properly verifies your JWT
 
 export async function middleware(request) {
   const publicRoutes = ["/", "/signup", "/login"];
@@ -13,7 +13,7 @@ export async function middleware(request) {
     try {
       isVerified = await tokenVerification(token);
     } catch (error) {
-      console.log(error.message, "from middleware");
+      console.error("Token verification error:", error.message);
     }
   }
 
@@ -25,7 +25,7 @@ export async function middleware(request) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
   } else {
-    if (pathname === "/login" || pathname === "/signup") {
+    if (publicRoutes.includes(pathname)) {
       return NextResponse.redirect(new URL("/", request.url));
     }
     if (pathname === "/admin" && isVerified.role !== "admin") {
@@ -38,6 +38,6 @@ export async function middleware(request) {
 
 export const config = {
   matcher: [
-    "/((?!api/auth|api/user/signup|_next/static|_next/image|favicon.ico|public/|signup|login|$).*)",
+    "/((?!api/auth|api/user/signup|_next/static|_next/image|favicon.ico|public|signup|login|$).*)",
   ],
 };

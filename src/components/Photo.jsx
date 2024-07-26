@@ -43,7 +43,7 @@ const Photo = () => {
           {/* Image */}
           <Image
             className="object-contain w-full h-full"
-            src={"/IMG_20231128_155832_782-removebg-preview.png"}
+            src={"/what-was-the-fandoms-reaction-about-alien-x-appearance-in-v0-0zmu69l4g3cc1.webp"}
             priority
             quality={100}
             fill
