@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { tokenVerification } from "./helper/jwt"; // Ensure this path is correct
+import pathToRegexp from "path-to-regexp";
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
@@ -47,6 +48,6 @@ export async function middleware(request) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|public/|favicon.ico|api/auth|api/user/signup|/|signup|login).*)",
+    "/((?!_next/static|_next/image|public/|favicon.ico|api/auth|api/user/signup|/|signup|login|images).*)",
   ],
 };
