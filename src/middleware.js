@@ -1,9 +1,10 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { tokenVerification } from "./helper/jwt"; // Ensure this path is correct
-import pathToRegexp from "path-to-regexp";
+import { tokenVerification } from "./helper/jwt";
 
 export async function middleware(request) {
+  const publicRoutes = ["/", "/signup", "/login"];
+  const publicApiRoutes = ["/api/auth/user/login", "/api/user/signup"];
   const { pathname } = request.nextUrl;
   const token = cookies().get("AccessToken")?.value;
 
@@ -12,42 +13,31 @@ export async function middleware(request) {
     try {
       isVerified = await tokenVerification(token);
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message, "from middleware");
     }
   }
 
-  const role = isVerified?.role;
-
-  // Define public routes and APIs
-  const publicRoutes = ["/", "/signup", "/login"];
-  const publicApiRoutes = ["/api/auth/user/login", "/api/user/signup"];
-
-  // Handle unauthenticated users
-  if (!isVerified) {
-    if (publicRoutes.includes(pathname) || publicApiRoutes.includes(pathname)) {
-      return NextResponse.next();
+  if (!token || !isVerified) {
+    if (
+      !publicRoutes.includes(pathname) &&
+      !publicApiRoutes.some((apiRoute) => pathname.startsWith(apiRoute))
+    ) {
+      return NextResponse.redirect(new URL("/login", request.url));
     }
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  // Handle authenticated users
-  if (isVerified) {
+  } else {
     if (pathname === "/login" || pathname === "/signup") {
       return NextResponse.redirect(new URL("/", request.url));
     }
-
-    // Restrict non-admin users from accessing admin routes
-    if (role !== "admin" && pathname.startsWith("/admin")) {
+    if (pathname === "/admin" && isVerified.role !== "admin") {
       return NextResponse.redirect(new URL("/", request.url));
     }
   }
 
-  // Allow access to all other routes
   return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|public/|favicon.ico|api/auth|api/user/signup|signup|login|images).*)",
+    "/((?!api/auth|api/user/signup|_next/static|_next/image|favicon.ico|public/|signup|login|$).*)",
   ],
 };
