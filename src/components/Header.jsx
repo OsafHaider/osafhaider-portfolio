@@ -5,8 +5,10 @@ import { Button } from "./ui/button";
 import Nav from "./Nav";
 import Mobilenav from "./Mobilenav";
 import { UserContext } from "@/context/User";
+
 const Header = () => {
   const { user } = useContext(UserContext);
+
   return (
     <header className="py-8 xl:py-7 text-white">
       <div className="container mx-auto flex items-center justify-between">
@@ -16,12 +18,15 @@ const Header = () => {
             Osaf<span className="text-accent">.</span>
           </h1>
         </Link>
+
         {/* Desktop Nav And Hire Me Button */}
         <div className="hidden xl:flex items-center gap-8">
           <Nav />
           <Link href={"/contact"}>
             <Button>Hire Me</Button>
           </Link>
+
+          {/* Profile picture */}
           <div
             className={`hidden ${
               user &&
@@ -35,6 +40,7 @@ const Header = () => {
             )}
           </div>
         </div>
+
         {/* Mobile Nav */}
         <div className="xl:hidden">
           <Mobilenav />

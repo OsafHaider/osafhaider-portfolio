@@ -2,9 +2,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+
 const Photo = () => {
+  // Return the Photo component
   return (
     <div className="w-full h-full relative">
+      {/* Image animation */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{
@@ -16,6 +19,7 @@ const Photo = () => {
           },
         }}
       >
+        {/* Image container */}
         {/* Image */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -29,6 +33,7 @@ const Photo = () => {
           }}
           className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] mix-blend-lighten flex items-center justify-center absolute"
         >
+          {/* Image */}
           <Image
             className="object-contain w-full h-full"
             src="/assets/images/photo.png"
@@ -38,6 +43,7 @@ const Photo = () => {
             alt=""
           />
         </motion.div>
+        {/* Circle animation */}
         {/* Circle */}
         <motion.svg
           className={"w-[300px] h-[300px] xl:w-[506px] xl:h-[506px]"}
@@ -45,6 +51,7 @@ const Photo = () => {
           viewBox={"0 0 506 506"}
           xmlns={"http://www.w3.org/2000/svg"}
         >
+          {/* Circle */}
           <motion.circle
             cx={253}
             cy={253}
