@@ -36,11 +36,11 @@ const Photo = () => {
           {/* Image */}
           <Image
             className="object-contain w-full h-full"
-            src="/assets/images/photo.png"
+            src={"/assets/images/photo.png"}
             priority
             quality={100}
             fill
-            alt=""
+            alt="image"
           />
         </motion.div>
         {/* Circle animation */}
