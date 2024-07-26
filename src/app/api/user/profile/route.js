@@ -7,7 +7,7 @@ import { tokenVerification } from "@/helper/jwt";
 
 export async function GET() {
   try {
-    const token = cookies()?.get("AccessToken")?.value;
+    const token = cookies().get("AccessToken")?.value;
     if (!token) {
       return NextResponse.json({
         message: "Token Not Found",
