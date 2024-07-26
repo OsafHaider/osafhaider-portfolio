@@ -42,7 +42,7 @@ const Photo = () => {
         >
           {/* Image */}
           <Image
-            className="object-contain w-full h-full border"
+            className="object-contain w-full h-full"
             src={"/IMG_20231128_155832_782-removebg-preview.png"}
             priority
             quality={100}
