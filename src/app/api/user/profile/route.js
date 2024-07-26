@@ -34,6 +34,12 @@ export async function GET() {
     await dbConnection();
 
     const user = await userModel.findById(_id);
+    if (!user) {
+      return NextResponse.json({
+        message: "User not found",
+        success: false,
+      });
+    }
     return NextResponse.json({
       message: "User fetched successfully",
       success: true,

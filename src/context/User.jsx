@@ -22,10 +22,10 @@ export const User = ({ children }) => {
   }
 
   useEffect(() => {
-    if (Object.keys(user).length === 0) {
+    if (!user || Object.keys(user).length === 0) {
       getUser();
     }
-  }, [pathname]); // Dependency array only includes pathname
+  }, [pathname, user]); // Dependency array only includes pathname
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
