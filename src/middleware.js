@@ -3,10 +3,14 @@ import { tokenVerification } from "./helper/jwt";
 import { cookies } from "next/headers";
 
 export async function middleware(req) {
+  // Get the access token from the cookies
   const token = cookies().get("AccessToken")?.value;
+  // Verify the token
   const isVerified = await tokenVerification(token);
+  // Get the role from the verified token
   const role = isVerified?.role;
 
+  // Array of public routes that can be accessed without authentication
   const publicRoutes = [
     "/login",
     "/signup",
@@ -15,8 +19,10 @@ export async function middleware(req) {
     "/api/user/signup",
   ];
 
+  // Get the path name from the request
   const pathName = req.nextUrl.pathname;
 
+  // If the user is not authenticated or the token is invalid
   if (!token || !isVerified) {
     // If the path is a public route, allow access
     if (publicRoutes.includes(pathName)) {
