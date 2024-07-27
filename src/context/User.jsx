@@ -11,7 +11,12 @@ export const User = ({ children }) => {
 
   async function getUser() {
     try {
-      const req = await ky.get("/api/user/profile");
+      const req = await ky.get("/api/user/profile", {
+        headers: {
+          Authorization:
+            "njcieciweicwu261676671xnkxjjnqxexiqn1903743147991341418471nmjmlek",
+        },
+      });
       const res = await req.json();
       if (res.success) {
         setUser(res.data);

@@ -5,6 +5,10 @@ export default async function loginfunction(data, toast, router, setLoading) {
     setLoading(true);
     const req = await ky.post("/api/auth/user/login", {
       json: data,
+      headers: {
+        Authorization:
+          "njcieciweicwu261676671xnkxjjnqxexiqn1903743147991341418471nmjmlek",
+      },
     });
     const res = await req.json();
     if (res.success) {
@@ -14,6 +18,10 @@ export default async function loginfunction(data, toast, router, setLoading) {
       setTimeout(() => {
         router.push("/");
       }, 2000);
+    } else {
+      toast({
+        title: res.message || "Login failed!",
+      });
     }
   } catch (error) {
     console.log(error);
