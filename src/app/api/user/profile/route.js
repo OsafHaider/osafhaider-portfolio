@@ -24,6 +24,12 @@ export async function GET() {
       });
     }
     const { id } = isVerified;
+    if (!id) {
+      return NextResponse.json({
+        message: "Invalid user id",
+        success: false,
+      });
+    }
     const isValidId = mongoose.Types.ObjectId.isValid(id);
     if (!isValidId) {
       return NextResponse.json({

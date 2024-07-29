@@ -6,7 +6,6 @@ export const UserContext = createContext();
 
 export const User = ({ children }) => {
   const [user, setUser] = useState({});
-  console.log(user);
   const pathname = usePathname();
 
   async function getUser() {

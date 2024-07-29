@@ -5,53 +5,79 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { compare } from "bcrypt";
 
-// Connect The DataBase
+// Connect to the Database
 dbConnection();
-// Starting EndPoint For Login SuperAdmin
+
+// Starting Endpoint for Login SuperAdmin
 export const POST = async (req) => {
   try {
     const { email, password } = await req.json();
-    const foundByemail = await userModel.findOne({ email });
-    if (Object.keys(foundByemail).length === 0 || !foundByemail) {
-      return NextResponse.json({
-        message: "Email is invalid!!",
-        success: false,
-      });
+
+    if (!email || !password) {
+      return NextResponse.json(
+        {
+          message: "Email and password are required!",
+          success: false,
+        },
+        { status: 400 }
+      );
     }
-    const passwordCompare = await compare(password, foundByemail.password);
+
+    const foundByEmail = await userModel.findOne({ email });
+
+    if (!foundByEmail) {
+      return NextResponse.json(
+        {
+          message: "Invalid email address!",
+          success: false,
+        },
+        { status: 404 }
+      );
+    }
+
+    const passwordCompare = await compare(password, foundByEmail.password);
+
     if (!passwordCompare) {
-      return NextResponse.json({
-        message: "Password is invalid",
-        success: false,
-      });
+      return NextResponse.json(
+        {
+          message: "Invalid password!",
+          success: false,
+        },
+        { status: 401 }
+      );
     }
+
     const data = {
-      id: foundByemail._id,
-      email: foundByemail.email,
-      role: foundByemail.role,
+      id: foundByEmail._id,
+      email: foundByEmail.email,
+      role: foundByEmail.role,
     };
-    // Generate The Token
+
+    // Generate the Token
     const token = await tokenGenerator(data);
-    // Handle Expiration Time Of Token
-    // Calculate the expiration time for 5 days
+
+    // Handle Expiration Time of Token
     const expirationTime = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000);
-    // Use cookie function of Nextjs App Router
-    const cookie = cookies();
-    cookie.set("AccessToken", token, {
+
+    // Use cookie method of NextResponse to set cookies
+    const response = NextResponse.json(
+      {
+        message: "You have logged in successfully!",
+        success: true,
+      },
+      { status: 200 }
+    );
+
+    cookies().set("AccessToken", token, {
       httpOnly: true,
       path: "/",
       secure: true,
       expires: expirationTime,
     });
-    return NextResponse.json(
-      {
-        message: "You LoggedIn!",
-        success: true,
-      },
-      { status: 200 }
-    );
+
+    return response;
   } catch (error) {
-    console.log(error.message);
+    console.error("Error during login:", error.message);
     return NextResponse.json(
       {
         message: "Internal Server Error",

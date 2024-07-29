@@ -14,9 +14,6 @@ export default async function loginfunction(data, toast, router, setLoading) {
       toast({
         title: res.message,
       });
-      setTimeout(() => {
-        router.push("/");
-      }, 2000);
     } else {
       toast({
         title: res.message || "Login failed!",

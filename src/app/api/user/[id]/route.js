@@ -20,6 +20,7 @@ export async function PUT(req, { params }) {
       });
     }
     const body = await req.json();
+    delete body.password;
     await dbConnection();
     const updatedUser = await userModel.findByIdAndUpdate(id, body, {
       new: true,

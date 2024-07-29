@@ -14,9 +14,7 @@ export default async function signupfunction(data, toast, router, setLoading) {
       toast({
         title: res.message,
       });
-      setTimeout(() => {
-        router.push("/login");
-      }, 2000);
+     
     }
   } catch (error) {
     console.log(error);
