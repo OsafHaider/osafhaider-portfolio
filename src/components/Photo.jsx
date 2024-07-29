@@ -5,7 +5,6 @@ import { UserContext } from "@/context/User";
 import Image from "next/image";
 
 const Photo = () => {
-  const { user } = useContext(UserContext);
   return (
     <div className="w-full h-full relative">
       {/* Image animation */}
@@ -34,7 +33,7 @@ const Photo = () => {
           className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] mix-blend-lighten flex items-center justify-center absolute"
         >
           {/* Image */}
-          <Image src={"https://res.cloudinary.com/dzeveeijn/image/upload/v1721841374/CRMimages/uwafxe543scjaf8wopnd.png"} alt="alien" width={800} height={800} />
+          <Image src={"/alien.webp"} alt="alien" width={800} height={800} />
         </motion.div>
         {/* Circle animation */}
         <motion.svg
