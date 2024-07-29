@@ -26,7 +26,7 @@ export const POST = async (req) => {
       });
     }
     const data = {
-      _id: foundByemail._id,
+      id: foundByemail._id,
       email: foundByemail.email,
       role: foundByemail.role,
     };

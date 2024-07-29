@@ -1,5 +1,4 @@
 "use client";
-import ky from "ky";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState, createContext } from "react";
 
@@ -7,11 +6,12 @@ export const UserContext = createContext();
 
 export const User = ({ children }) => {
   const [user, setUser] = useState({});
+  console.log(user);
   const pathname = usePathname();
 
   async function getUser() {
     try {
-      const req = await ky.get("/api/user/profile", {
+      const req = await fetch("/api/user/profile", {
         headers: {
           Authorization:
             "njcieciweicwu261676671xnkxjjnqxexiqn1903743147991341418471nmjmlek",

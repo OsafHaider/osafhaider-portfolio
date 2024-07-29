@@ -21,11 +21,13 @@ const userSchema = new Schema(
       required: [true, "User name is required"],
       lowercase: true,
       trim: true,
+      unique: true,
     },
     email: {
       type: String,
       required: [true, "Email is required"],
       trim: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -38,10 +40,46 @@ const userSchema = new Schema(
       enum: ["user", "admin"],
       default: "user",
     },
+    socialMedia: [
+      {
+        name: {
+          type: String,
+          trim: true,
+        },
+        link: {
+          type: String,
+          trim: true,
+        },
+      },
+    ],
+    education: [
+      {
+        duration: {
+          startingTime: {
+            type: Date,
+          },
+          endingTime: {
+            type: Date,
+          },
+        },
+        insitinsititution: {
+          type: String,
+          trim: true,
+        },
+        degree: {
+          type: String,
+          trim: true,
+        },
+      },
+    ],
     experience: [
       {
-        time: {
+        startingTime: {
           type: Date,
+        },
+        endingTime: {
+          type: Date,
+          default: null,
         },
         position: {
           type: String,
@@ -51,13 +89,31 @@ const userSchema = new Schema(
           type: String,
           trim: true,
         },
+        totalTime: {
+          type: String,
+          trim: true,
+        },
       },
     ],
-    image: {
+    freelanceStatus: {
+      type: Boolean,
+      default: false,
+    },
+    languages: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+    skills: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+    nationality: {
       type: String,
       trim: true,
-      default:
-        "https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg",
     },
   },
   {

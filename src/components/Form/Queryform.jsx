@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -25,9 +25,10 @@ import { useToast } from "../ui/use-toast";
 import schema from "@/schema/Query";
 
 const Queryform = () => {
- 
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
   const formSubmit = async (data) => {
-    await contactFormfunction(data,toast);
+    await contactFormfunction(data, toast, setLoading);
   };
   const form = useForm({
     resolver: zodResolver(schema),
@@ -123,7 +124,14 @@ const Queryform = () => {
             ))}
           </div>
           <Button size="md" className="max-w-40" type="submit">
-            Submit
+            {loading ? (
+              <div className="flex items-center">
+                <LoaderCircle className="mr-3 animate-spin text-white" />
+                <span>Please wait</span>
+              </div>
+            ) : (
+              "Submit"
+            )}
           </Button>
         </form>
       </Form>

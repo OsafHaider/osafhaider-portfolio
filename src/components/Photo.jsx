@@ -1,18 +1,11 @@
 "use client";
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { UserContext } from "@/context/User";
+import Image from "next/image";
 
 const Photo = () => {
   const { user } = useContext(UserContext);
-  // Default image URL
-  const defaultImage =
-    "https://img.freepik.com/free-vector/colorful-wallpaper-with-geometrical-shapes_23-2148798229.jpg";
-
-  // Image URL from user context or default image
-  const imageUrl = user?.image || defaultImage;
-
   return (
     <div className="w-full h-full relative">
       {/* Image animation */}
@@ -41,14 +34,7 @@ const Photo = () => {
           className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] mix-blend-lighten flex items-center justify-center absolute"
         >
           {/* Image */}
-          <Image
-            className="object-contain w-full h-full"
-            src={"/what-was-the-fandoms-reaction-about-alien-x-appearance-in-v0-0zmu69l4g3cc1.webp"}
-            priority
-            quality={100}
-            fill
-            alt="User image"
-          />
+          <Image src={"https://res.cloudinary.com/dzeveeijn/image/upload/v1721841374/CRMimages/uwafxe543scjaf8wopnd.png"} alt="alien" width={800} height={800} />
         </motion.div>
         {/* Circle animation */}
         <motion.svg

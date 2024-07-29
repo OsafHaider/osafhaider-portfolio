@@ -2,14 +2,12 @@ import { connection, connect } from "mongoose";
 
 const dbConnection = async () => {
   if (connection.readyState >= 1) {
-    console.log("mongodb already connected");
     return;
   }
   try {
-    connect(process.env.MONGODB_URL);
-    console.log("Mongodb Connected!!");
+    await connect(process.env.DB);
   } catch (error) {
-    console.log(error, "Error From Mongodb Connection Function");
+    console.log(error.message, "Error From Mongodb Connection Function");
   }
 };
 

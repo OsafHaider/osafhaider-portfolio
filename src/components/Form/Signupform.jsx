@@ -102,7 +102,7 @@ const Signupform = () => {
             <Button type="submit" className="col-span-2 mt-4">
               {loading ? (
                 <div className="flex items-center">
-                  <LoaderCircle className="mr-3 animate-spin text-blue-800" />
+                  <LoaderCircle className="mr-3 animate-spin text-white" />
                   <span>Please wait</span>
                 </div>
               ) : (

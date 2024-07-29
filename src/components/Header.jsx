@@ -24,9 +24,8 @@ const Header = () => {
           <Link href={"/contact"}>
             <Button className="text-white">Hire Me</Button>
           </Link>
-
           {/* Profile picture */}
-          {user && (
+          {user && Object.keys(user).length > 0 && (
             <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center">
               {user.fullName && (
                 <p className="font-medium text-2xl">

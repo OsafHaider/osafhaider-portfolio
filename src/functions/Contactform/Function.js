@@ -1,21 +1,30 @@
-import ky from "ky";
+import axios from "axios";
+
 export default async function contactFormfunction(data, toast) {
   try {
-    const req = await ky.post("/api/query", {
-      json: data,
+    const response = await axios.post("/api/query", data, {
+      headers: {
+        Authorization:
+          "njcieciweicwu261676671xnkxjjnqxexiqn1903743147991341418471nmjmlek",
+      },
     });
-    const res = await req.json();
+    const res = response.data;
     const message = res.message;
     if (res.success) {
       toast({
-        title: { message },
+        title: message,
+      });
+    } else {
+      toast({
+        title: res.message || "Query submission failed!",
+        variant: "destructive",
       });
     }
   } catch (error) {
     console.log(error);
     const message = error.response?.data?.message || "An error occurred";
     toast({
-      title: { message },
+      title: message,
       variant: "destructive",
     });
   }

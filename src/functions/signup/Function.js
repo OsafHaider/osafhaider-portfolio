@@ -1,16 +1,15 @@
-import ky from "ky";
+import axios from "axios";
 
 export default async function signupfunction(data, toast, router, setLoading) {
   try {
     setLoading(true);
-    const req = await ky.post("/api/user/signup", {
+    const response = await axios.post("/api/user/signup", data, {
       headers: {
         Authorization:
           "njcieciweicwu261676671xnkxjjnqxexiqn1903743147991341418471nmjmlek",
       },
-      json: data,
     });
-    const res = await req.json();
+    const res = response.data;
     if (res.success) {
       toast({
         title: res.message,

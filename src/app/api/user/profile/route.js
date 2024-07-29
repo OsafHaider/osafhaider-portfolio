@@ -1,10 +1,11 @@
-import { Types } from "mongoose";
 import dbConnection from "@/backend/db/db";
 import userModel from "@/backend/model/user";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { tokenVerification } from "@/helper/jwt";
+import mongoose from "mongoose";
 
+await dbConnection();
 export async function GET() {
   try {
     const token = cookies().get("AccessToken")?.value;
@@ -22,8 +23,8 @@ export async function GET() {
         success: false,
       });
     }
-    const { _id } = isVerified;
-    const isValidId = Types.ObjectId.isValid(_id);
+    const { id } = isVerified;
+    const isValidId = mongoose.Types.ObjectId.isValid(id);
     if (!isValidId) {
       return NextResponse.json({
         message: "Invalid user id",
@@ -31,9 +32,7 @@ export async function GET() {
       });
     }
 
-    await dbConnection();
-
-    const user = await userModel.findById(_id);
+    const user = await userModel.findById(id);
     if (!user) {
       return NextResponse.json({
         message: "User not found",
@@ -41,9 +40,9 @@ export async function GET() {
       });
     }
     return NextResponse.json({
+      data: user,
       message: "User fetched successfully",
       success: true,
-      data: user,
     });
   } catch (error) {
     console.log(error.message);

@@ -9,14 +9,16 @@ export async function middleware(request) {
   const apiKey = process.env.API_KEY;
 
   // Secure API routes with auth token
-  if (pathname.startsWith("/api/") && auth !== apiKey) {
-    return NextResponse.json(
-      {
-        message: "Unauthorized",
-        success: false,
-      },
-      { status: 401 }
-    );
+  if (pathname.startsWith("/api/")) {
+    if (auth !== apiKey) {
+      return NextResponse.json(
+        {
+          message: "Unauthorized",
+          success: false,
+        },
+        { status: 401 }
+      );
+    }
   }
 
   // Verify token for frontend routes
@@ -24,6 +26,7 @@ export async function middleware(request) {
   const isVerified = token ? await tokenVerification(token) : false;
   const publicRoutes = ["/signup", "/login", "/"];
   const isPublicRoute = publicRoutes.includes(pathname);
+
   // Redirect logic for public and protected routes
   if (!isVerified && !isPublicRoute) {
     return NextResponse.redirect(new URL("/login", request.url));
