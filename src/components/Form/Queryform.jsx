@@ -23,6 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import contactFormfunction from "@/functions/Contactform/Function";
 import { useToast } from "../ui/use-toast";
 import schema from "@/schema/Query";
+import { LoaderCircle } from "lucide-react";
 
 const Queryform = () => {
   const [loading, setLoading] = useState(false);

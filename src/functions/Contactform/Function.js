@@ -1,7 +1,8 @@
 import axios from "axios";
 
-export default async function contactFormfunction(data, toast) {
+export default async function contactFormfunction(data, toast, setLoading) {
   try {
+    setLoading(true);
     const response = await axios.post("/api/query", data, {
       headers: {
         Authorization:
@@ -27,5 +28,7 @@ export default async function contactFormfunction(data, toast) {
       title: message,
       variant: "destructive",
     });
+  } finally {
+    setLoading(false);
   }
 }

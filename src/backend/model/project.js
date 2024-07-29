@@ -13,7 +13,7 @@ const projectSchema = new Schema(
     },
     category: {
       type: String,
-      enum: ["Frontend", "Backend", "Fullstack", "Mobile", "Other"],
+      enum: ["Frontend", "Backend", "Fullstack"],
       required: [true, "Category is required"],
     },
     technologies: [
@@ -26,25 +26,26 @@ const projectSchema = new Schema(
       type: String, // URL of the project image
       required: [true, "Image URL is required"],
     },
-    likes: {
-      type: Number,
-      default: 0,
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    },
-    comments: [
+    likes: [
       {
         type: Schema.Types.ObjectId,
         ref: "User",
       },
     ],
+    comments: [
+      {
+        text: {
+          type: String,
+          required: [true, "Comment text is required"],
+        },
+        author: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+      },
+    ],
     liveUrl: {
       type: String, // URL of the live project
-    },
-    githubUrl: {
-      type: String, // URL of the GitHub repository
     },
   },
   {

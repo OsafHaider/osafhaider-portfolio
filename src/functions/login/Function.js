@@ -25,6 +25,7 @@ export default async function loginfunction(data, toast, router, setLoading) {
   } catch (error) {
     console.log(error);
     toast({
+      variant: "destructive",
       title: error.response?.data?.message || "An error occurred!",
     });
   } finally {
