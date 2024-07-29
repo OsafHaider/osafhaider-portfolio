@@ -24,7 +24,7 @@ export async function middleware(request) {
   // Verify token for frontend routes
   const token = cookies().get("AccessToken")?.value;
   const isVerified = token ? await tokenVerification(token) : false;
-  const publicRoutes = ["/signup", "/login"];
+  const publicRoutes = ["/signup", "/login","/"];
   const isPublicRoute = publicRoutes.includes(pathname);
 
   // Redirect logic for public and protected routes

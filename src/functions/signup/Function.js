@@ -11,6 +11,7 @@ export default async function signupfunction(data, toast, router, setLoading) {
     });
     const res = response.data;
     if (res.success) {
+      router.push("/");
       toast({
         title: res.message,
       });
