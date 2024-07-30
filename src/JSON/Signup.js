@@ -14,7 +14,7 @@ const signupJson = [
   {
     name: "phoneNumber",
     label: "Phone Number",
-    type: "text",
+    type: "tel",
     placeholder: "phoneNumber",
   },
   {
