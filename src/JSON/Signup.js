@@ -1,39 +1,39 @@
 const signupJson = [
   {
-    name: "userName",
-    label: "Username",
-    type: "text",
-    placeholder: "username",
-  },
-  {
     name: "fullName",
     label: "Full Name",
     type: "text",
-    placeholder: "fullName",
+    placeholder: "FullName",
+  },
+  {
+    name: "userName",
+    label: "Username",
+    type: "text",
+    placeholder: "UserName",
+  },
+  {
+    name: "email",
+    label: "Email",
+    type: "email",
+    placeholder: "E-mail",
+  },
+  {
+    name: "password",
+    label: "Password",
+    type: "password",
+    placeholder: "Password",
   },
   {
     name: "phoneNumber",
     label: "Phone Number",
     type: "tel",
-    placeholder: "phoneNumber",
+    placeholder: "PhoneNumber",
   },
   {
     name: "DateOfBirth",
     label: "Date Of Birth",
     type: "date",
     placeholder: "DateOfBirth",
-  },
-  {
-    name: "email",
-    label: "Email",
-    type: "email",
-    placeholder: "email",
-  },
-  {
-    name: "password",
-    label: "Password",
-    type: "password",
-    placeholder: "password",
   },
 ];
 export default signupJson;

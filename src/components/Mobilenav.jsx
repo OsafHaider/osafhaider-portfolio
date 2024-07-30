@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -10,12 +10,24 @@ import { UserContext } from "@/context/User";
 const Mobilenav = () => {
   // Get user context
   const { user } = useContext(UserContext);
+  const [Open, setOpen] = useState(false);
+  function closeSheet() {
+    setOpen(!Open);
+  }
   // Get current pathname
   const pathname = usePathname();
 
+  // Check if user is logged in
+  const isLoggedIn = user && Object.keys(user).length > 0;
+
   // Render the Mobilenav component
   return (
-    <Sheet>
+    <Sheet
+      open={Open}
+      onOpenChange={() => {
+        closeSheet();
+      }}
+    >
       {/* Sheet trigger */}
       <SheetTrigger className="flex items-center justify-center">
         {/* Menu icon */}
@@ -33,21 +45,24 @@ const Mobilenav = () => {
           </Link>
         </div>
         {/* Navigation links */}
-        {/* nav */}
         <nav className="flex items-center justify-center flex-col gap-8">
           {/* Map over links array */}
           {links.map((link, index) => (
             <Link
+              onClick={() => {
+                closeSheet();
+              }}
               // Set active link style
               className={`${
-                link.path === pathname &&
-                "text-accent border-b-2 border-accent "
+                link.path === pathname && "text-accent border-b-2 border-accent"
               } capitalize font-medium hover:text-accent transition-all ${
-                // Hide login and signup links if user is logged in
-                (Object.keys(user) === 0 && link.name === "Login") ||
-                link.name === "Signup"
+                (!isLoggedIn && link.name === "Login") ||
+                (!isLoggedIn && link.name === "Signup")
+                  ? ""
+                  : isLoggedIn &&
+                    (link.name === "Login" || link.name === "Signup")
                   ? "hidden"
-                  : null
+                  : ""
               }`}
               href={link.path}
               key={index}

@@ -49,10 +49,11 @@ const Queryform = () => {
           className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl"
           onSubmit={form.handleSubmit(formSubmit)}
         >
-          <h3 className="text-4xl text-accent">Lets Work Together</h3>
+          <h3 className="text-4xl text-accent">Let's Work Together</h3>
           <p className="text-white/60">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
-            quibusdam?
+            We're excited to collaborate with you on your next project. Please
+            fill out the form below with your project details and queries, and
+            we'll get back to you as soon as possible.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {contactFormjson.map((v, i) => (

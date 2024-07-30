@@ -42,8 +42,8 @@ const Signupform = () => {
   };
 
   return (
-    <div className="container mx-auto flex justify-center">
-      <div className="bg-[#27272c] p-8 rounded-lg shadow-lg w-full max-w-2xl h-auto">
+    <div className="container mx-auto flex justify-center items-center min-h-screen">
+      <div className="bg-[#27272c] p-8 rounded-lg shadow-lg w-full max-w-2xl">
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-accent">Signup</h1>
           <p className="text-muted-foreground">
@@ -53,7 +53,7 @@ const Signupform = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-1 gap-6 md:grid-cols-2"
           >
             {signupJson.map((v, i) => (
               <FormField
@@ -64,7 +64,7 @@ const Signupform = () => {
                   <FormItem>
                     <FormLabel htmlFor={v.name}>{v.label}</FormLabel>
                     <FormControl>
-                      <div className={`${v.type === "password" && "relative"}`}>
+                      <div className="relative">
                         <Input
                           type={
                             v.type === "password" && showPassword
@@ -75,7 +75,7 @@ const Signupform = () => {
                           {...field}
                           id={v.name}
                           className={`w-full ${
-                            v.type === "password" && "pr-10"
+                            v.type === "password" ? "pr-10" : ""
                           }`}
                         />
                         {v.type === "password" && (
@@ -98,19 +98,25 @@ const Signupform = () => {
                 )}
               />
             ))}
-
-            <Button type="submit" className="col-span-2 mt-4">
-              {loading ? (
-                <div className="flex items-center">
-                  <LoaderCircle className="mr-3 animate-spin text-white" />
-                  <span>Please wait</span>
-                </div>
-              ) : (
-                "Signup"
-              )}
-            </Button>
+            <div className="col-span-1 md:col-span-2">
+              <Button type="submit" className="w-full mt-4">
+                {loading ? (
+                  <div className="flex items-center justify-center">
+                    <LoaderCircle className="mr-3 animate-spin text-white" />
+                    <span>Please wait</span>
+                  </div>
+                ) : (
+                  "Signup"
+                )}
+              </Button>
+            </div>
           </form>
         </Form>
+        <div className="text-center mt-4">
+          <Link href="/login" className="text-accent hover:underline">
+            Already have an account? Log in
+          </Link>
+        </div>
       </div>
     </div>
   );
