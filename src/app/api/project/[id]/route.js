@@ -12,7 +12,7 @@ export async function GET(req, { params }) {
         success: false,
       });
     }
-    const verification = await Types.ObjectId.isValid(id);
+    const verification =  Types.ObjectId.isValid(id);
     if (!verification) {
       return NextResponse.json({
         message: "Invalid project id",

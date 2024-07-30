@@ -1,6 +1,12 @@
 import axios from "axios";
 
-export default async function signupfunction(data, toast, router, setLoading) {
+export default async function signupfunction(
+  data,
+  toast,
+  router,
+  setLoading,
+  form
+) {
   try {
     setLoading(true);
     const response = await axios.post("/api/user/signup", data, {
@@ -11,11 +17,11 @@ export default async function signupfunction(data, toast, router, setLoading) {
     });
     const res = response.data;
     if (res.success) {
+      form.reset();
       router.push("/");
       toast({
         title: res.message,
       });
-     
     }
   } catch (error) {
     console.log(error);

@@ -1,6 +1,12 @@
 import axios from "axios";
 
-export default async function loginfunction(data, toast, router, setLoading) {
+export default async function loginfunction(
+  data,
+  toast,
+  router,
+  setLoading,
+  form
+) {
   try {
     setLoading(true);
     const response = await axios.post("/api/auth/user/login", data, {
@@ -9,15 +15,13 @@ export default async function loginfunction(data, toast, router, setLoading) {
           "njcieciweicwu261676671xnkxjjnqxexiqn1903743147991341418471nmjmlek",
       },
     });
+    console.log(response);
     const res = response.data;
     if (res.success) {
+      form.reset();
       router.push("/");
       toast({
         title: res.message,
-      });
-    } else {
-      toast({
-        title: res.message || "Login failed!",
       });
     }
   } catch (error) {

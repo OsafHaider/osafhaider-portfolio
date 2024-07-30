@@ -1,10 +1,12 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import services from "@/JSON/Servicejson";
 import { MoveDownRight } from "lucide-react";
-const page = () => {
+import { UserContext } from "@/context/User";
+
+const Page = () => {
+  const { user } = useContext(UserContext);
   return (
     <section className="min-h-[80vh] flex flex-col justify-center py-12 xl:py-0">
       <div className="container mx-auto">
@@ -16,7 +18,7 @@ const page = () => {
             transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
           }}
         >
-          {services.map((service, index) => (
+          {user?.services?.map((service, index) => (
             <div
               className="flex-1 flex flex-col justify-center gap-6 group"
               key={index}
@@ -28,16 +30,16 @@ const page = () => {
                 </div>
                 <Link
                   className="w-[70px] h-[70px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex items-center justify-center hover:-rotate-45"
-                  href={service.href}
+                  href={"/work"}
                 >
                   <MoveDownRight className="text-primary text-3xl" />
                 </Link>
               </div>
               <h2 className="text-[42px] leading-none font-bold text-white group-hover:text-accent transition-all duration-500">
-                {service.title}
+                {service.value}
               </h2>
               {/* Description */}
-              <p className="text-white/60">{service.description}</p>
+              <p className="text-white/60">{service.desc}</p>
               {/* Border */}
               <div className="border-b border-white/20 w-full"></div>
             </div>
@@ -48,4 +50,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

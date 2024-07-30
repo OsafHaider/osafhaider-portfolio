@@ -56,8 +56,8 @@ export async function POST(req) {
     }
 
     // Verify user ID
-    const { _id } = isVerified;
-    const isValidId = Types.ObjectId.isValid(_id);
+    const { id } = isVerified;
+    const isValidId = Types.ObjectId.isValid(id);
     if (!isValidId) {
       return NextResponse.json({
         message: "Invalid user id",
@@ -66,7 +66,7 @@ export async function POST(req) {
     }
 
     // Fetch user details
-    const user = await userModel.findById(_id);
+    const user = await userModel.findById(id);
     if (!user) {
       return NextResponse.json({
         message: "User not found",

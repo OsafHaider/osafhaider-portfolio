@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { tokenVerification } from "@/helper/jwt";
 import mongoose from "mongoose";
+import { decrypt } from "secure-encrypt";
 
 await dbConnection();
 export async function GET() {
@@ -45,6 +46,8 @@ export async function GET() {
         success: false,
       });
     }
+    const decryptedPhone = decrypt(user.phoneNumber, process.env.SECRET_KEY);
+    user.phoneNumber = decryptedPhone;
     return NextResponse.json({
       data: user,
       message: "User fetched successfully",

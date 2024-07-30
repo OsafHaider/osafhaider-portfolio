@@ -3,11 +3,11 @@ import { cookies, headers } from "next/headers";
 import { tokenVerification } from "./helper/jwt";
 
 export async function middleware(request) {
+  console.log("hello");
   const { pathname } = request.nextUrl;
   const headersList = headers();
   const auth = headersList.get("Authorization");
   const apiKey = process.env.API_KEY;
-
   // Secure API routes with auth token
   if (pathname.startsWith("/api/")) {
     if (auth !== apiKey) {
@@ -19,6 +19,8 @@ export async function middleware(request) {
         { status: 401 }
       );
     }
+
+    return NextResponse.next();
   }
 
   // Verify token for frontend routes
@@ -40,5 +42,8 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$|.*\\.jpg$).*)"],
+  matcher: [
+    "/api/:path*",
+    "/((?!_next/static|_next/image|favicon.ico|signup|login|.*\\.png$|.*\\.jpg$|.*\\.jpeg|.*\\.svg|$).*)",
+  ],
 };

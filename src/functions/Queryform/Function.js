@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function contactFormfunction(data, toast, setLoading) {
+export default async function queryFormfunction(data, toast, setLoading, form,router) {
   try {
     setLoading(true);
     const response = await axios.post("/api/query", data, {
@@ -12,6 +12,8 @@ export default async function contactFormfunction(data, toast, setLoading) {
     const res = response.data;
     const message = res.message;
     if (res.success) {
+      form.reset();
+      router.push("/");
       toast({
         title: message,
       });

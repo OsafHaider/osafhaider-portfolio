@@ -20,16 +20,18 @@ import projectTypejson from "@/JSON/Projecttype";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import contactFormfunction from "@/functions/Contactform/Function";
 import { useToast } from "../ui/use-toast";
 import schema from "@/schema/Query";
 import { LoaderCircle } from "lucide-react";
+import queryFormfunction from "@/functions/Queryform/Function";
+import { useRouter } from "next/navigation";
 
 const Queryform = () => {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
   const formSubmit = async (data) => {
-    await contactFormfunction(data, toast, setLoading);
+    await queryFormfunction(data, toast, setLoading, form, router);
   };
   const form = useForm({
     resolver: zodResolver(schema),

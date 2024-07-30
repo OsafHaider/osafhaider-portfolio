@@ -2,7 +2,7 @@ const about = (user, timeFormatter) => {
   return {
     title: "About Me",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Non cupiditate ea quod quis, a laborum odio aliquam?",
+      "A dedicated professional with diverse experience in technology and development, continuously learning and growing.",
     info: [
       {
         fieldName: "Name",

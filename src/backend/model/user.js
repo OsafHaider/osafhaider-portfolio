@@ -62,7 +62,7 @@ const userSchema = new Schema(
             type: Date,
           },
         },
-        insitinsititution: {
+        institution: {
           type: String,
           trim: true,
         },
@@ -90,6 +90,18 @@ const userSchema = new Schema(
           trim: true,
         },
         totalTime: {
+          type: String,
+          trim: true,
+        },
+      },
+    ],
+    services: [
+      {
+        value: {
+          type: String,
+          trim: true,
+        },
+        desc: {
           type: String,
           trim: true,
         },

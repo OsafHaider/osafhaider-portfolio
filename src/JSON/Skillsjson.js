@@ -7,10 +7,11 @@ import {
   FaNodeJs,
 } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
+
 const skill = {
   title: "My Skills",
   description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Non cupiditate ea quod quis, a laborum odio aliquam?",
+    "I have expertise in a range of technologies and tools, each contributing to my ability to build and design high-quality web applications. My skill set includes front-end technologies, back-end development, and design tools.",
   skillList: [
     {
       icon: <FaHtml5 />,
@@ -46,4 +47,5 @@ const skill = {
     },
   ],
 };
+
 export default skill;

@@ -3,7 +3,7 @@ const info = [
   {
     icon: <FaPhoneAlt />,
     title: "Phone",
-    description: "+91 9999999999",
+    description: "03707031370",
   },
   {
     icon: <FaEnvelope />,
@@ -13,7 +13,7 @@ const info = [
   {
     icon: <FaMapMarkedAlt />,
     title: "Address",
-    description: "Code Corner,Tech Town 124",
+    description: "4th Floor, Edify Building, Susan Road, Madina Town, Fsd",
   },
 ];
 

@@ -30,6 +30,12 @@ const Page = () => {
   // Get about me details
   const aboutMe = about(user, timeFormatter);
 
+  // Get experience details
+  const myExperience = experience(user, timeFormatter);
+
+  // Get education details
+  const myEducation = education(user, timeFormatter);
+
   return (
     <motion.div
       className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0"
@@ -54,27 +60,23 @@ const Page = () => {
           <div className="min-h-[70vh] w-full">
             <TabsContent className="w-full" value="experience">
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                <h1 className="text-4xl font-bold">{experience.title}</h1>
+                <h1 className="text-4xl font-bold">{myExperience.title}</h1>
                 <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                  {experience.description}
+                  {myExperience.description}
                 </p>
                 <ScrollArea className="h-[400px]">
                   <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-                    {user?.experience?.map((item, index) => (
+                    {myExperience.items?.map((item, index) => (
                       <li
                         className="bg-[#232329] flex items-center justify-center flex-col h-[184px] py-6 px-10 rounded-xl lg:items-start gap-1"
                         key={index}
                       >
                         <div className="flex items-center">
                           <span className="text-accent">
-                            {timeFormatter(item.startingTime)}
+                            {item.startingTime}
                           </span>
                           -
-                          <span className="text-accent">
-                            {item.endingTime
-                              ? timeFormatter(item.endingTime)
-                              : "Present"}
-                          </span>
+                          <span className="text-accent">{item.endingTime}</span>
                         </div>
                         <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
                           {item.position}
@@ -91,26 +93,18 @@ const Page = () => {
             </TabsContent>
             <TabsContent className="w-full" value="education">
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                <h1 className="text-4xl font-bold">{education.title}</h1>
+                <h1 className="text-4xl font-bold">{myEducation.title}</h1>
                 <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                  {education.description}
+                  {myEducation.description}
                 </p>
                 <ScrollArea className="h-[400px]">
                   <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-                    {user?.education?.map((item, index) => (
+                    {myEducation?.items?.map((item, index) => (
                       <li
                         className="bg-[#232329] flex items-center justify-center flex-col h-[184px] py-6 px-10 rounded-xl lg:items-start gap-1"
                         key={index}
                       >
-                        <div className="flex items-center">
-                          <span className="text-accent">
-                            {timeFormatter(item.duration.startingTime)}
-                          </span>
-                          -
-                          <span className="text-accent">
-                            {timeFormatter(item.duration.endingTime)}
-                          </span>
-                        </div>
+                        <span className="text-accent">{item.duration}</span>
                         <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
                           {item.degree}
                         </h3>

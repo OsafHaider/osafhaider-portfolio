@@ -33,7 +33,7 @@ const Photo = () => {
           className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] mix-blend-lighten flex items-center justify-center absolute"
         >
           {/* Image */}
-          <Image src={"https://img.freepik.com/free-photo/abstract-colorful-splash-3d-background-generative-ai-background_60438-2509.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1722211200&semt=sph"} alt="alien" width={500} height={500} />
+          <Image src={"/programmer.png"} alt="alien" width={600} height={600} />
         </motion.div>
         {/* Circle animation */}
         <motion.svg

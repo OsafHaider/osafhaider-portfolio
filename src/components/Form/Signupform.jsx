@@ -38,7 +38,7 @@ const Signupform = () => {
   });
 
   const onSubmit = async (data) => {
-    await signupfunction(data, toast, router, setLoading);
+    await signupfunction(data, toast, router, setLoading, form);
   };
 
   return (
