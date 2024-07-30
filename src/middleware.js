@@ -4,7 +4,6 @@ import { tokenVerification } from "./helper/jwt";
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
-  console.log("sdm");
   const headersList = headers();
   const auth = headersList.get("Authorization");
   const apiKey = process.env.API_KEY;
