@@ -3,8 +3,8 @@ import { cookies, headers } from "next/headers";
 import { tokenVerification } from "./helper/jwt";
 
 export async function middleware(request) {
-  console.log("hello");
   const { pathname } = request.nextUrl;
+  console.log("sdm");
   const headersList = headers();
   const auth = headersList.get("Authorization");
   const apiKey = process.env.API_KEY;
@@ -44,6 +44,6 @@ export async function middleware(request) {
 export const config = {
   matcher: [
     "/api/:path*",
-    "/((?!_next/static|_next/image|favicon.ico|signup|login|.*\\.png$|.*\\.jpg$|.*\\.jpeg|.*\\.svg|$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.jpeg$|.*\\.svg$).*)",
   ],
 };
