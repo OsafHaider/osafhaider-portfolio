@@ -73,7 +73,7 @@ const Queryform = () => {
                   <FormItem>
                     <FormLabel htmlFor={v.inputname}>{v.label}</FormLabel>
 
-                    {v.type === "textarea" && (
+                    {v.stype === "textarea" && (
                       <FormControl>
                         <Textarea
                           className="h-[200px]"
@@ -104,12 +104,13 @@ const Queryform = () => {
                       </Select>
                     )}
 
-                    {v.type !== "textarea" && v.type !== "select" && (
+                    {v.stype !== "textarea" && v.type !== "select" && (
                       <FormControl>
                         <Input
                           type={v.stype}
                           placeholder={v.placeholder}
                           {...field}
+                          className="w-full"
                         />
                       </FormControl>
                     )}
