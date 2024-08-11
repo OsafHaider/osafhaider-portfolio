@@ -1,4 +1,4 @@
-const about = (user, timeFormatter) => {
+const about = (admin) => {
   return {
     title: "About Me",
     description:
@@ -6,33 +6,33 @@ const about = (user, timeFormatter) => {
     info: [
       {
         fieldName: "Name",
-        fieldValue: user.fullName || "N/A",
+        fieldValue: admin.fullName || "N/A",
       },
       {
         fieldName: "Phone",
-        fieldValue: user.phoneNumber || "N/A",
+        fieldValue: admin.phoneNumber || "N/A",
       },
       {
         fieldName: "Experience",
-        fieldValue: user?.experience?.map((v) => {
+        fieldValue: admin?.experience?.map((v) => {
           return `${v.totalTime}`;
         }),
       },
       {
         fieldName: "Nationality",
-        fieldValue: user.nationality || "N/A",
+        fieldValue: admin.nationality || "N/A",
       },
       {
         fieldName: "Freelance",
-        fieldValue: user.freelanceStatus ? "Yes" : "No",
+        fieldValue: admin.freelanceStatus ? "Yes" : "No",
       },
       {
         fieldName: "Email",
-        fieldValue: user.email || "N/A",
+        fieldValue: admin.email || "N/A",
       },
       {
         fieldName: "Languages",
-        fieldValue: user?.languages?.join(", ") || "N/A",
+        fieldValue: admin?.languages?.join(", ") || "N/A",
       },
     ],
   };

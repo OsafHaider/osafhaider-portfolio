@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   Tooltip,
@@ -9,16 +9,15 @@ import {
 } from "@/components/ui/tooltip";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion } from "framer-motion";
-import { UserContext } from "@/context/User";
 import moment from "moment";
 import about from "@/JSON/Aboutjson";
 import experience from "@/JSON/Experiencejson";
 import education from "@/JSON/Educationjson";
 import skill from "@/JSON/Skillsjson";
+import { AdminContext } from "@/context/Admin";
 
 const Page = () => {
-  const { user } = useContext(UserContext);
-
+  const {admin}=useContext(AdminContext)
   // Define the time formatter function
   const timeFormatter = (time) => {
     if (!time) {
@@ -28,13 +27,14 @@ const Page = () => {
   };
 
   // Get about me details
-  const aboutMe = about(user, timeFormatter);
+  const aboutMe = about(admin, timeFormatter);
 
   // Get experience details
-  const myExperience = experience(user, timeFormatter);
+  const myExperience = experience(admin, timeFormatter);
 
   // Get education details
-  const myEducation = education(user, timeFormatter);
+  const myEducation = education(admin, timeFormatter);
+
 
   return (
     <motion.div

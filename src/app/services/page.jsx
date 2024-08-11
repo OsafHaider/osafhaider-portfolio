@@ -3,10 +3,10 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { MoveDownRight } from "lucide-react";
-import { UserContext } from "@/context/User";
+import { AdminContext } from "@/context/Admin";
 
 const Page = () => {
-  const { user } = useContext(UserContext);
+  const { admin } = useContext(AdminContext);
   return (
     <section className="min-h-[80vh] flex flex-col justify-center py-12 xl:py-0">
       <div className="container mx-auto">
@@ -18,7 +18,7 @@ const Page = () => {
             transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
           }}
         >
-          {user?.services?.map((service, index) => (
+          {admin?.services?.map((service, index) => (
             <div
               className="flex-1 flex flex-col justify-center gap-6 group"
               key={index}

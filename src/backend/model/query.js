@@ -2,7 +2,7 @@ import { Schema, model, models } from "mongoose";
 
 const querySchema = new Schema(
   {
-    requesterName: {
+    fullName: {
       type: String,
       required: [true, "Requester name is required"],
       trim: true,

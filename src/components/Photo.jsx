@@ -1,7 +1,7 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { UserContext } from "@/context/User";
+
 import Image from "next/image";
 
 const Photo = () => {

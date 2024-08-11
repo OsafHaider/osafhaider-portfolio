@@ -1,3 +1,5 @@
+My Portfolio Website
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -14,6 +16,14 @@ pnpm dev
 bun dev
 ```
 
+## Features
+1:Responsive Design: The website is fully responsive, ensuring a seamless experience across all devices.
+2:Backend Integration: All data displayed on the website is dynamically fetched from a backend server.
+3:User Authentication: Implemented login and signup functionality to manage user sessions securely.
+4:Interactive UI: Designed a user-friendly interface with intuitive navigation.
+5:Query Section: Added a query section at the end for visitors to get in touch or leave feedback.
+
+Your feedback and contributions are greatly appreciated! Feel free to open issues or submit pull requests on the GitHub repository.
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.

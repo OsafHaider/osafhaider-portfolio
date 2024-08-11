@@ -19,13 +19,5 @@ const links = [
     name: "Contact",
     path: "/contact",
   },
-  {
-    name: "Signup",
-    path: "/signup",
-  },
-  {
-    name: "Login",
-    path: "/login",
-  },
 ];
 export default links;

@@ -1,9 +1,5 @@
 import dbConnection from "@/backend/db/db";
 import queryModel from "@/backend/model/query";
-import userModel from "@/backend/model/user";
-import { tokenVerification } from "@/helper/jwt";
-import { Types } from "mongoose";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 // Fetch Queries (GET)
@@ -36,55 +32,11 @@ export async function GET() {
 // Add a new Query (POST)
 export async function POST(req) {
   try {
-    // Retrieve token from cookies
-    const token = cookies().get("AccessToken")?.value;
-
-    if (!token) {
-      return NextResponse.json({
-        message: "Token Not Found",
-        success: false,
-      });
-    }
-
-    // Verify token
-    const isVerified = await tokenVerification(token);
-    if (!isVerified) {
-      return NextResponse.json({
-        message: "Invalid Token",
-        success: false,
-      });
-    }
-
-    // Verify user ID
-    const { id } = isVerified;
-    const isValidId = Types.ObjectId.isValid(id);
-    if (!isValidId) {
-      return NextResponse.json({
-        message: "Invalid user id",
-        success: false,
-      });
-    }
-
-    // Fetch user details
-    const user = await userModel.findById(id);
-    if (!user) {
-      return NextResponse.json({
-        message: "User not found",
-        success: false,
-      });
-    }
-
     // Create query data
     const data = await req.json();
-    const queryData = {
-      ...data,
-      requesterName: user.fullName,
-      email: user.email,
-      phoneNumber: user.phoneNumber,
-    };
 
     // Save query to database
-    const query = await queryModel.create(queryData);
+    const query = await queryModel.create(data);
     if (!query) {
       return NextResponse.json({
         message: "Query not added",

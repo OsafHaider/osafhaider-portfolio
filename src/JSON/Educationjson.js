@@ -1,10 +1,10 @@
-function education(user, timeFormatter) {
+function education(admin, timeFormatter) {
   const education = {
     icon: "/cap.svg",
     title: "My Education",
     description:
       "Explore my educational background and academic achievements. From foundational degrees to specialized certifications, each milestone has contributed to my skill set and professional development.",
-    items: user?.education?.map((item) => ({
+    items: admin?.education?.map((item) => ({
       institution: item.institution,
       degree: item.degree,
       duration: `${timeFormatter(item.duration.startingTime)} - ${timeFormatter(
