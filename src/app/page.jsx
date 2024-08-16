@@ -24,14 +24,20 @@ const page = () => {
             </p>
             {/* Button and Social Links */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
-              <Button
-                variant="outline"
-                size="lg"
-                className="uppercase flex items-center gap-2 text-white"
+              <a
+                href="https://docs.google.com/document/d/18BM2PegNGxMujMlmLIeAucTkHObqtWtqYkrj8P7BNh4/export?format=pdf"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <span>Download CV</span>
-                <Download size={18} className="text-xl" />
-              </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="uppercase flex items-center gap-2 text-white"
+                >
+                  <span>Download CV</span>
+                  <Download size={18} className="text-xl" />
+                </Button>
+              </a>
               <div className="mb-8 xl:mb-0">
                 <Socials
                   containerStyle="flex gap-6"
